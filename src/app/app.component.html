@@ -1,0 +1,65 @@
+<div id="data-grid-demo">
+  <dx-data-grid
+    #gridContainer
+    [dataSource]="dataSource"
+    keyExpr="ID"
+    [showBorders]="true"
+    (onEditorPreparing)="onEditorPreparing($event)"
+  >
+    <dxo-paging [enabled]="false"></dxo-paging>
+    <dxo-editing
+      mode="popup"
+      [allowUpdating]="true"
+      [allowAdding]="true"
+      [allowDeleting]="true"
+    >
+      <dxo-popup
+        title="Employee Info"
+        [showTitle]="true"
+        [width]="700"
+        [height]="525"
+      >
+      </dxo-popup>
+      <dxo-form>
+        <dxi-item itemType="group" [colCount]="2" [colSpan]="2">
+          <dxi-item dataField="FirstName"></dxi-item>
+          <dxi-item dataField="LastName"></dxi-item>
+          <dxi-item dataField="HireDate"></dxi-item>
+
+          <dxi-item
+            dataField="IsVirtual"
+            editorType="dxSwitch"
+            [editorOptions]="{
+            switchedOnText: 'True',
+            switchedOffText: 'False'          
+          }"
+          ></dxi-item>
+          <dxi-item dataField="ConnectorId"></dxi-item>
+        </dxi-item>
+
+        <dxi-item dataField="TssGuid"></dxi-item>
+        <dxi-item dataField="ClientId"></dxi-item>
+        <dxi-item itemType="button">
+          <dxo-button-options
+            type="default"
+            width="100%"
+            [text]="GenerateNewFiscalizationId"
+            [onClick]="getNewFiscalizationId"
+          ></dxo-button-options>
+        </dxi-item>
+      </dxo-form>
+    </dxo-editing>
+
+    <dxi-column dataField="FirstName"></dxi-column>
+    <dxi-column dataField="LastName"></dxi-column>
+    <dxi-column dataField="HireDate" dataType="date"> </dxi-column>
+
+    <dxi-column
+      dataField="IsVirtual"
+      [setCellValue]="setCellValue"
+    ></dxi-column>
+    <dxi-column dataField="ConnectorId"></dxi-column>
+    <dxi-column dataField="TssGuid"></dxi-column>
+    <dxi-column dataField="ClientId"></dxi-column>
+  </dx-data-grid>
+</div>
